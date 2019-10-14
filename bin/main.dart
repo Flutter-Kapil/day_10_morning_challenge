@@ -7,6 +7,25 @@
 //
 // longestZero("11111") ➞ ""
 
+import 'dart:math';
+
+String longestZero(String x) {
+  int count = 0;
+  int highest = 0;
+  for (int i = 0; i < x.length; i++) {
+    if (x[i] == '0') {
+      count++;
+      highest = max(count, highest);
+    } else {
+      count = 0;
+    }
+  }
+  String output = "";
+  for (int i = 0; i < highest; i++) {
+    output = output + '0';
+  }
+  return output;
+}
 
 // Challenge 2
 // Create a function that performs an even-odd transform to an array, n times. Each even-odd transformation:
@@ -21,8 +40,21 @@
 //
 // evenOddTransform([1, 2, 3], 1) ➞ [3, 0, 5]
 
-main() {
+List evenOddTransform(List<int> list, int n) {
+  List<int> newList = [];
+  for (int i = 0; i < list.length; i++) {
+    if (list[i] % 2 != 0) {
+      newList.add(list[i] + 2 * n);
+    } else {
+      newList.add(list[i] - 2 * n);
+    }
+  }
+  return newList;
+}
 
+main() {
+  print(evenOddTransform([3, 4, 9], 3));
+  print(longestZero("100000101000000"));
 }
 
 // Challenge 3
